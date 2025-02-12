@@ -170,35 +170,19 @@ function App() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 2 }}
-      className="mt-8 relative"
+      className="mt-8 group relative"
     >
-      <motion.button onClick={() => setShowLetter(true)} className="relative w-24 h-16 group">
-        {/* Envelope Body */}
-        <motion.div
-          className="absolute inset-0 bg-amber-100 border-2 border-red-900/30 rounded-lg shadow-md transform-origin-top"
-          initial={{ rotateX: 0 }}
-          whileHover={{ rotateX: [0, -20, 0], scale: 1.05 }}
-          transition={{ duration: 0.5 }}
-        />
-        {/* Envelope Flap */}
-        <motion.div
-          className="absolute inset-0 bg-amber-50 border-2 border-red-900/30 rounded-lg shadow-md origin-top"
-          initial={{ rotateX: 0 }}
-          whileHover={{ rotateX: -120 }}
-          transition={{ duration: 0.5 }}
-        >
-          <FaEnvelope className="text-red-900 text-5xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-80" />
-        </motion.div>
-        {/* Heart Decoration */}
+      <motion.button onClick={() => setShowLetter(true)} className="relative">
+        <FaEnvelope className="text-red-900 text-5xl transition-transform group-hover:scale-110" />
         <motion.span
           animate={{ y: [0, -3, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="absolute -top-2 -right-2 z-10"
+          className="absolute -top-2 -right-2"
         >
           💝
         </motion.span>
+        <p className="text-amber-900 mt-2 font-serif">Click to read my letter</p>
       </motion.button>
-      <p className="text-amber-900 mt-4 font-serif">Click to read my letter</p>
     </motion.div>
   );
 
@@ -266,51 +250,27 @@ function App() {
   );
 
   const PhotoMontage = () => (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 0.8 }}
-      className="max-w-5xl mx-auto mt-16 p-8"
-    >
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1 }}
-        className="text-2xl md:text-3xl font-serif text-red-900 mb-8 text-center"
-      >
+    <div className="max-w-5xl mx-auto mt-16 p-8">
+      <h2 className="text-2xl md:text-3xl font-serif text-red-900 mb-8 text-center">
         Our Beautiful Memories Together 💝
-      </motion.h2>
+      </h2>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {photos.map((photo, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              delay: 1.2 + index * 0.1,
-              duration: 0.5,
-              type: "spring",
-              stiffness: 100,
-            }}
-            className="relative group"
-          >
+          <div key={index} className="relative group">
             <div className="absolute inset-0 bg-amber-50/80 backdrop-blur-sm rounded-lg shadow-lg border-2 border-red-900/20 transform rotate-1 group-hover:rotate-0 transition-transform" />
             <div className="absolute inset-0 bg-amber-50/80 backdrop-blur-sm rounded-lg shadow-lg border-2 border-red-900/20 transform -rotate-1 group-hover:rotate-0 transition-transform" />
-            <motion.div
-              whileHover={{ scale: 1.05, rotate: 0 }}
-              className="relative rounded-lg overflow-hidden transform rotate-0 hover:rotate-0 transition-transform"
-            >
+            <div className="relative rounded-lg overflow-hidden transform hover:scale-105 transition-all duration-300">
               <img
                 src={photo}
                 alt={`Memory ${index + 1}`}
-                className="w-full h-48 md:h-64 object-cover rounded-lg shadow-md transform transition-transform hover:scale-110"
+                className="w-full h-48 md:h-64 object-cover rounded-lg shadow-md"
               />
               <div className="absolute inset-0 bg-red-900/10 group-hover:bg-red-900/0 transition-colors" />
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 
   return (
