@@ -373,12 +373,7 @@ function App() {
           </div>
         </motion.div>
       ) : (
-        <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="text-center relative bg-amber-50/30 backdrop-blur-sm rounded-lg shadow-lg border border-red-900/20 p-8 w-full"
-        >
+        <motion.div className="text-center relative bg-amber-50/30 backdrop-blur-sm rounded-lg shadow-lg border border-red-900/20 p-8 w-full">
           <FloatingHearts />
           <div className="flex flex-col items-center gap-4">
             <motion.div
